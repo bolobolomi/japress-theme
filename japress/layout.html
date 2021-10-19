@@ -285,16 +285,18 @@
 </footer>
 #option('japress_foot_code')
 <script type="text/javascript">
-    $("img").lazyload({effect: "fadeIn"});
-</script>
-<script>
+    $(document).ready(function () {
+        $("img").lazyload({effect: "fadeIn"});
+
     #if(option('japress_cursor_default'))
-    $("body").css("cursor", "url('#option('japress_cursor_default')'), default");
+            $("body").css("cursor", "url('#option('japress_cursor_default')'), default");
     #end
     #if(option('japress_cursor_pointer'))
-    $("a").css("cursor", "url('#option('japress_cursor_pointer')'), pointer");
+            $("a").css("cursor", "url('#option('japress_cursor_pointer')'), pointer");
     #end
+    });
 </script>
+
 </body>
 
 </html>

@@ -8,11 +8,19 @@
 
 #define css()
 <link rel="stylesheet" href="css/post-content.css">
+<link rel="stylesheet" href="js/fancybox/jquery.fancybox.min.css">
 <link rel="stylesheet" href="js/prism/styles/#(option('japress_code_theme','BlackMac')).css">
+<style>
+    .post-content-content img {
+        border-radius: 10px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
+    }
+</style>
 #end
 
 #define script()
 <script type="text/javascript" src="js/post-content.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.fancybox.min.js"></script>
 <script src="#(CPATH)/static/front/jpressfront.js"></script>
 <script src="/static/components/jquery/jquery.form.min.js"></script>
 <script src="js/prism/prism.js"></script>
@@ -295,6 +303,28 @@
 
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.menu-header-list > .menu-item-has-children');
+        var imgarr = $('.post-content-content').find('img');
+        for (var i = 0; i < imgarr.length; i++) {
+            var src = $(imgarr[i]).attr('src')
+            $(imgarr[i]).attr("src","/templates/japress/img/loading.gif");
+            $(imgarr[i]).attr("title","点击图片以全屏查看");
+            $(imgarr[i]).attr("data-original",src);
+            var imgurl = $(imgarr[i]).attr('data-original');
+            var html = imgarr[i].outerHTML;
+            if ($(imgarr[i]).parent()[0].tagName != 'A') {
+                $(imgarr[i]).replaceWith('<a data-fancybox="gallery" data-type="image" href="' + imgurl + '">' + html + '</a>');
+            }
+        }
+        $.fancybox.defaults.buttons = [
+            "close"
+        ];
+        $('a[href*=".jpg"], a[href*=".jpeg"], a[href*=".png"], a[href*=".gif"], a[href*=".bmp"]').fancybox({});
+    });
+</script>
 #end
 
 
