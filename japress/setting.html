@@ -1,0 +1,368 @@
+#@layout()
+
+#define content()
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/admin.css">
+<div id="app">
+    <form id="optionForm">
+    <div class="setmain">
+        <div class="header-set-title" style="padding: 20px;">
+            <div class="header-set-title-name">
+                <h2>jaPress 设置中心</h2></div>
+            <div><a class="el-link el-link--default">
+                <span class="el-link--inner"><button type="button"
+                                                     class="el-button el-button--default el-button--mini"><span>
+                            主题文档
+                        </span></button></span></a></div>
+        </div>
+        <div class="set-main-plane">
+            <div class="set-main-menu">
+                <ul role="menubar" class="set-main-menu-list el-menu">
+                    <li role="menuitem" tabindex="-1" class="el-menu-item" style="text-align: center;"><a href="#常规设置">常规设置</a></li>
+                    <li role="menuitem" tabindex="-1" class="el-menu-item" style="text-align: center;"><a href="#首页设置">首页设置</a></li>
+                    <li role="menuitem" tabindex="-1" class="el-menu-item" style="text-align: center;"><a href="#文章设置">文章设置</a></li>
+                    <li role="menuitem" tabindex="-1" class="el-menu-item" style="text-align: center;"><a href="#外观设置">外观设置</a></li>
+                    <li role="menuitem" tabindex="-1" class="el-menu-item" style="text-align: center;"><a href="#插入代码">插入代码</a></li>
+                </ul>
+            </div>
+            <div class="set-main-form">
+                <div>
+                    <h2 id="常规设置">常规设置</h2>
+                    <div class="set-plane">
+                        <div class="set-title">
+                            网站logo
+                        </div>
+                        <div class="set-object">
+
+                            <div class="el-input el-input--small el-input-group el-input-group--append"><input
+                                    type="text" name="japress_logo" value="#(CPATH)#option('japress_logo')" id="logo" autocomplete="off" placeholder="/templates/japress/img/japress-logo.png" class="el-input__inner">
+                                <div class="el-input-group__append">
+                                    <button type="button" for-input="logo" class="btn-image-browser el-button el-button--default el-button--mini"><span>选择图片
+            </span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="set-plane set-plane-note">
+                        <div class="set-title"></div>
+                        <div class="set-object">
+                            建议高度为50px
+                        </div>
+                    </div>
+                    <div class="set-plane">
+                        <div class="set-title">
+                            favicon图标
+                        </div>
+                        <div class="set-object">
+                            <div class="el-input el-input--small el-input-group el-input-group--append"><input
+                                    type="text" name="japress_favicon" value="#(CPATH)#option('japress_favicon')" id="favicon" autocomplete="off" placeholder="/templates/japress/img/favicon.png" class="el-input__inner">
+                                <div class="el-input-group__append">
+                                    <button type="button" for-input="favicon" class="btn-image-browser el-button el-button--default el-button--mini"><span>选择图片
+            </span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="set-plane set-plane-note">
+                        <div class="set-title"></div>
+                        <div class="set-object">
+                            标题栏旁边图标，建议大小32*32
+                        </div>
+                    </div>
+                    <div class="set-plane">
+                        <div class="set-title">
+                            默认缩略图
+                        </div>
+                        <div class="set-object">
+                            <div class="el-input el-input--small el-input-group el-input-group--append"><input
+                                    type="text" name="japress_thumb" value="#(CPATH)#option('japress_thumb')" id="thumb" autocomplete="off" placeholder="/templates/japress/img/thumbnail.png" class="el-input__inner">
+                                <div class="el-input-group__append">
+                                    <button type="button" for-input="thumb" class="btn-image-browser el-button el-button--default el-button--mini"><span>选择图片
+            </span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="set-plane set-plane-note">
+                        <div class="set-title"></div>
+                        <div class="set-object">
+                            文章没有特色图片的时候，显示本图片，建议大小 240 x 160 的倍数
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h2 id="文章设置">文章设置</h2>
+                    <br>
+                    <div class="set-plane set-plane-note">
+                        <div class="set-title">文末展示版权声明信息</div>
+                        <div class="set-object">
+                            <label for="bq-on">
+                                <input #if(option('japress_article_banquan') == null) checked #end type="radio" name="japress_article_banquan" value="" id="bq-on"> 展示
+                            </label>
+                            <label for="bq-off">
+                                <input #if(option('japress_article_banquan') == 'off') checked #end type="radio" name="japress_article_banquan" value="off" id="bq-off"> 不展示
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="set-plane set-plane-note">
+                        <div class="set-title">打赏图片</div>
+                        <div class="set-object">
+                            <div class="el-input el-input--small el-input-group el-input-group--append"><input
+                                    type="text" name="japress_dashang" value="#(CPATH)#option('japress_dashang')" id="dashang" autocomplete="off" class="el-input__inner">
+                                <div class="el-input-group__append">
+                                    <button type="button" for-input="dashang" class="btn-image-browser el-button el-button--default el-button--mini"><span>选择图片
+            </span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <hr>
+
+                    <h2 id="首页设置">首页设置</h2>
+<br>
+                    <div class="set-plane set-plane-nocenter">
+                        <div class="set-title">
+                            幻灯片设置
+                        </div>
+                        <div class="set-object">
+                            <div class="el-textarea"><textarea autocomplete="off" rows="5" name="japress_index_hdp" placeholder="请输入内容"
+                                                               class="el-textarea__inner"
+                                                               style="min-height: 33px;">#option('japress_index_hdp')</textarea></div>
+                        </div>
+                    </div>
+                    <div class="set-plane">
+                        <div class="set-title"></div>
+                        <div class="set-object">
+                            格式：图片地址(img的src)|要跳转的链接(a的href)|链接打开方式(a的target)|标题文字，每行一个，中间以|隔开。<br>
+                            例如：http://image1.png|/article/category/1|_self|第一个幻灯片
+                        </div>
+                    </div>
+
+                    <div class="set-plane set-plane-nocenter">
+                        <div class="set-title">
+                            推荐卡片设置
+                        </div>
+                        <div class="set-object">
+                            <div class="el-textarea"><textarea autocomplete="off" rows="5" name="japress_index_tuijian" placeholder="请输入内容"
+                                                               class="el-textarea__inner"
+                                                               style="min-height: 33px;">#option('japress_index_tuijian')</textarea></div>
+                        </div>
+                    </div>
+                    <div class="set-plane">
+                        <div class="set-title"></div>
+                        <div class="set-object">
+                            最多可以显示4个<br>
+                            格式：图片地址(img的src)|要跳转的链接(a的href)|链接打开方式(a的target)|标题文字，每行一个，中间以|隔开。<br>
+                            例如：http://image1.png|/article/category/1|_self|第一个卡片
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h2 id="外观设置">外观设置</h2>
+                    <br>
+
+                    <div class="set-plane">
+                        <div class="set-title">
+                            字体
+                        </div>
+                        <div class="set-object">
+                            <label for="font_default"><input type="radio" id="font_default" name="japress_font" value="" #if(option('japress_font') == null) checked #end> 默认</label>
+                            <label for="font_zkklt"><input type="radio" id="font_zkklt" name="japress_font" value="zkklt" #if(option('japress_font') == "zkklt") checked #end> 仓耳与墨</label>
+                            <label for="font_ceym"><input type="radio" id="font_ceym" name="japress_font" value="ceym" #if(option('japress_font') == "ceym") checked #end> 站酷快乐体</label>
+                        </div>
+                    </div>
+
+                    <div class="set-plane">
+                        <div class="set-title">
+                        主颜色：
+                        </div>
+                        <div class="set-object">
+                            <div class="set-plane">
+                                <div style="margin-right: 10px;">
+                                    <div class="el-input el-input--small">
+                                        <input type="text" autocomplete="off" name="japress_maincolor" value="#option('japress_maincolor','#409EFF')"  class="el-input__inner">
+                                    </div>
+                                </div>
+                                    <button type="button" onclick="document.forms[0].japress_maincolor.value='#409EFF'" class="el-button el-button--primary el-button--small"><span>恢复默认</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="set-plane">
+                        <div class="set-title">
+                            选中/Hover等颜色：
+                        </div>
+                        <div class="set-object">
+                            <div class="set-plane">
+                                <div style="margin-right: 10px;">
+                                    <div class="el-input el-input--small">
+                                        <input type="text" autocomplete="off" name="japress_MaincolorHover" value="#option('japress_MaincolorHover','#409EFF')"  class="el-input__inner">
+                                    </div>
+                                </div>
+                                <button type="button" onclick="document.forms[0].japress_MaincolorHover.value='#409EFF'" class="el-button el-button--primary el-button--small"><span>恢复默认</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="set-plane">
+                        <div class="set-title">
+                            选中文字背景颜色：
+                        </div>
+                        <div class="set-object">
+                            <div class="set-plane">
+                                <div style="margin-right: 10px;">
+                                    <div class="el-input el-input--small">
+                                        <input type="text" autocomplete="off" name="japress_fontSelectedColor" value="#option('japress_fontSelectedColor','#409EFF')"  class="el-input__inner">
+                                    </div>
+                                </div>
+                                <button type="button" onclick="document.forms[0].japress_fontSelectedColor.value='#409EFF'" class="el-button el-button--primary el-button--small"><span>恢复默认</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="set-plane">
+                        <div class="set-title">
+                            代码块显示风格
+                        </div>
+                        <div class="set-object">
+                            <label for="theme1"><input type="radio" id="theme1" name="japress_code_theme" value="" #if(option('japress_code_theme') == null) checked #end> 黑色</label>
+                            <label for="theme2"><input type="radio" id="theme2" name="japress_code_theme" value="GrayMac" #if(option('japress_code_theme') == "GrayMac") checked #end> 灰色</label>
+                            <label for="theme3"><input type="radio" id="theme3" name="japress_code_theme" value="WhiteMac" #if(option('japress_code_theme') == "WhiteMac") checked #end> 白色</label>
+                        </div>
+                    </div>
+
+                    <div class="set-plane">
+                        <div class="set-title">
+                            鼠标样式（一般状态）
+                        </div>
+                        <div class="set-object">
+                            <div class="el-input el-input--small el-input-group el-input-group--append"><input
+                                    type="text" name="japress_cursor_default" value="#(CPATH)#option('japress_cursor_default')" id="japress_cursor_default" autocomplete="off" placeholder="" class="el-input__inner">
+                                <div class="el-input-group__append">
+                                    <button type="button" for-input="japress_cursor_default" class="btn-image-browser el-button el-button--default el-button--mini"><span>选择文件
+            </span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="set-plane">
+                        <div class="set-title">
+
+                        </div>
+                        <div class="set-object">请使用.cur文件</div>
+                    </div>
+
+                    <div class="set-plane">
+                        <div class="set-title">
+                            鼠标样式（超链接状态）
+                        </div>
+                        <div class="set-object">
+                            <div class="el-input el-input--small el-input-group el-input-group--append"><input
+                                    type="text" name="japress_cursor_pointer" value="#(CPATH)#option('japress_cursor_pointer')" id="japress_cursor_pointer" autocomplete="off" placeholder="" class="el-input__inner">
+                                <div class="el-input-group__append">
+                                    <button type="button" for-input="japress_cursor_pointer" class="btn-image-browser el-button el-button--default el-button--mini"><span>选择文件
+            </span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="set-plane">
+                        <div class="set-title">
+
+                        </div>
+                        <div class="set-object">请使用.cur文件</div>
+                    </div>
+
+                    <hr>
+
+                    <h2 id="插入代码">插入代码</h2>
+                    <br>
+                        <div class="set-plane set-plane-nocenter">
+                            <div class="set-title">
+                                页头代码
+                            </div>
+                            <div class="set-object">
+                                <div class="el-textarea"><textarea autocomplete="off" rows="5" name="japress_head_code"  placeholder="请输入内容"
+                                                                   class="el-textarea__inner"
+                                                                   style="min-height: 33px;">#option('japress_head_code')</textarea></div>
+                            </div>
+                        </div>
+                        <div class="set-plane">
+                            <div class="set-title"></div>
+                            <div class="set-object">
+                                添加在页面head前的代码
+                            </div>
+                        </div>
+                        <div class="set-plane set-plane-nocenter">
+                            <div class="set-title">
+                                页脚代码
+                            </div>
+                            <div class="set-object">
+                                <div class="el-textarea"><textarea autocomplete="off" rows="5" name="japress_foot_code"  placeholder="请输入内容"
+                                                                   class="el-textarea__inner"
+                                                                   style="min-height: 33px;">#option('japress_foot_code')</textarea></div>
+                            </div>
+                        </div>
+                        <div class="set-plane">
+                            <div class="set-title"></div>
+                            <div class="set-object">
+                                在页面底部添加的代码
+                            </div>
+                        </div>
+                        <div class="set-plane set-plane-nocenter">
+                            <div class="set-title">
+                                自定义CSS
+                            </div>
+                            <div class="set-object">
+                                <div class="el-textarea"><textarea autocomplete="off" name="japress_custom_css"  rows="5" placeholder="请输入内容"
+                                                                   class="el-textarea__inner"
+                                                                   style="min-height: 33px;">#option('japress_custom_css')</textarea></div>
+                            </div>
+                        </div>
+                        <div class="set-plane set-plane-nocenter">
+                            <div class="set-title">
+                                阿里Iconfont地址
+                            </div>
+                            <div class="set-object">
+                                <div class="el-input el-input--small"><input type="text" name="japress_aliicon" value="#option('japress_aliicon')" autocomplete="off"
+                                                                                    placeholder="请输入内容"
+                                                                                    class="el-input__inner">
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="set-plane">
+                            <div class="set-title"></div>
+                            <div class="set-object">
+                                自定义阿里云图标Symbol地址，设置以后可以调用自选的阿里云图标。注意这儿只能填写js地址。<br>
+                                调用方式：复制 <span class="el-tag el-tag--danger el-tag--mini el-tag--light">#图标名称</span> 填写到 模板 -> 菜单 -> 图标 处即可。
+                                <br>
+                                    例如 #icon-hello 为下面图标的图表名称：
+                                <pre>
+&lt;svg class="icon" aria-hidden="true"&gt;
+    &lt;use xlink:href="#icon-hello">&lt;/use&gt;
+&lt;/svg&gt;
+                                </pre>
+                                </div>
+                        </div>
+
+                    <hr>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="control-plane">
+        <button type="submit" class="el-button el-button--default el-button--mini"><span>保存</span>
+        </button>
+    </div>
+    </form>
+</div>
+#end

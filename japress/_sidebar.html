@@ -1,0 +1,138 @@
+<div class="sidebar">
+    <div class="sidebar-box-list">
+
+        #@sidebar_top?()
+
+        #if(show_side_search != false)
+        <div class="aside-box">
+            <form class="search-form" action="#(CPATH)/article/search"
+                  role="search">
+                <div class="search-form-input-plane">
+                    <input type="text" class="search-keyword" name="keyword" placeholder="搜索内容"
+                           value="#(keyword ??)">
+                </div>
+                <div>
+                    <button type="submit" class="search-submit">
+                        搜索
+                    </button>
+                </div>
+            </form>
+        </div>
+        #end
+
+        #if(show_side_hotarticle != false)
+        <div class="aside-box">
+            <h2 class="widget-title">
+                热门文章
+            </h2>
+            #articles(orderBy='view_count desc',count=5)
+            #for(article : articles)
+            <div class="hot-post-widget-item">
+                <div>
+                                        <span class="hot-post-widget-item-num">
+                                            #(for.index+1)
+                                        </span>
+                    <span class="hot-post-widget-item-title">
+                                            <a href="#(article.url)" target="_blank">
+                                                    #(article.title)
+                                                </a>
+                                        </span>
+                </div>
+                <div class="hot-post-widget-item-meta">
+                    <div>
+                        #date(article.created,'yyyy-MM-dd')
+                    </div>
+                    <div>
+
+                        #articleCategories(article.id,"category")
+                        #for(category : categories)
+                        <a target="_blank" href="#(category.url ??)">
+                            #(category.title ??)
+                        </a>
+                        #end
+                        #end
+
+                    </div>
+                </div>
+            </div>
+            #end
+            #end
+        </div>
+        #end
+
+
+        #if(show_side_tagcloud != false)
+        <div class="aside-box">
+            <h2 class="widget-title">
+                标签云
+            </h2>
+            <script src="js/TagCloud.js"></script>
+            <div class="corepress-tag-cloud">
+                <div class="corepress-tag-container-tag1">
+                </div>
+            </div>
+            <style>
+                .corepress-tagcloud a { font-size: 12px; color: #fff; padding: 0 !important;
+                } .corepress-tagcloud a:hover { color: #fff !important; } .tagcloud--item
+                                                                          { color: #fff; padding: 2px 4px; border-radius: 3px; cursor: pointer; }
+                .tagcloud--item:hover { opacity: 1 !important; z-index: 100 !important;
+                }
+            </style>
+            <script>
+                var tags = [];
+                #tags(orderBy='count',count=20)
+                #for(tag : tags)
+                tags.push({text:'#(tag.title)',href:'#(tag.url)'});
+                #end
+                #end
+                var tag = TagCloud('.corepress-tag-container-tag1', tags, {},
+                    ['#67C23A', '#E6A23C', '#F56C6C', '#909399', '#CC9966', '#FF6666', '#99CCFF', '#FF9999', '#CC6633']);
+            </script>
+        </div>
+        #end
+
+        #if(show_side_newcomment != false)
+        <div class="aside-box">
+            <h2 class="widget-title">
+                最新评论
+            </h2>
+            #comments(orderBy='created desc',count=5)
+            #for(c : comments)
+            <li>
+                <div class="widger-comment-plane">
+                    <div class="widger-comment-info">
+                        <div class="widger-comment-user">
+                            <div class="widger-avatar">
+                                <img class="user-avatar" width="30" height="30" src="#(c.user.avatar ??)">
+                            </div>
+                            <div class="widger-comment-name">
+                                #(c.user.nickname ??)
+                            </div>
+                        </div>
+                        <div class="widger-comment-time">
+                                                <span>
+                                                    #date(c.created,'MM月dd日')
+                                                </span>
+                        </div>
+                    </div>
+                    <div class="widger-comment-excerpt">
+                        <p>
+                            #(c.content ??)
+                        </p>
+                    </div>
+                    <p class="widger-comment-postlink">
+                        评论于
+                        <a href="#(c.article.url ??)" target="_blank">
+                            #(c.article.title ??)
+                        </a>
+                    </p>
+                </div>
+            </li>
+            #end
+            #end
+        </div>
+        #end
+
+        #@sidebar_bottom?()
+    </div>
+</div>

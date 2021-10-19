@@ -1,0 +1,301 @@
+#define layout()
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Referrer" content="origin">
+    <link href="#(CPATH)#option('japress_favicon','/templates/japress/img/favicon.png')" type="image/x-icon" rel="shortcut icon">
+    <style>
+        .icon {width: 18px; height: 18px;vertical-align: -3px;fill: currentColor;overflow:
+                hidden;}
+        :root {
+            --Maincolor: #option('japress_maincolor','#409EFF') !important;
+            --MaincolorHover: #option('japress_MaincolorHover','#409EFF') !important;
+            --fontSelectedColor: #option('japress_fontSelectedColor','#409EFF') !important;
+        }
+        #nprogress .bar {
+            background: var(--Maincolor) !important;
+        }
+    </style>
+
+    #if(option('japress_font') == "zkklt")
+    <link rel="stylesheet" type="text/css" href="css/zkklt/font.css">
+    <style>
+        html, textarea {
+            font-family: zkklt, PingFang\ SC, Hiragino\ Sans\ GB, Microsoft\ YaHei, STHeiti, WenQuanYi\ Micro\ Hei, Helvetica, Arial, sans-serif !important;
+        }
+    </style>
+    #else if(option('japress_font') == "ceym")
+    <link rel="stylesheet" type="text/css" href="css/ceym/font.css">
+    <style>
+    html, textarea {
+    font-family: ceym, PingFang\ SC, Hiragino\ Sans\ GB, Microsoft\ YaHei, STHeiti, WenQuanYi\ Micro\ Hei, Helvetica, Arial, sans-serif !important;
+    }
+    </style>
+    #end
+
+    <link rel="stylesheet" href="css/main-mobile.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="js/qrcode.min.js"></script>
+    <script type="text/javascript" src="js/clipboard.min.js"></script>
+    <link rel="stylesheet" href="css/nprogress.min.css">
+    <script src="js/nprogress.min.js"></script>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/swiper.min.js"></script>
+    <script src="js/index.js"></script>
+    #@css?()
+    #@script?()
+    #option('japress_head_code')
+    #option('japress_custom_css')
+    <title>#(SEO_TITLE ?? (WEB_TITLE + ' - ' + WEB_SUBTITLE))</title>
+    <meta name="keywords" content="#(SEO_KEYWORDS)">
+    <meta name="description" content="#(SEO_DESCRIPTION)">
+</head>
+<body>
+<script>
+    NProgress.start();
+    $(function() {
+        NProgress.done();
+    });
+</script>
+<header>
+    <div class="header-main-plane">
+        <div class="header-main container">
+            <script>
+                function openMenu() {
+                    $('body').css('overflow', 'hidden');
+                    $(".drawer-menu-plane").addClass("drawer-menu-plane-show");
+                    $(".menu-plane").appendTo($(".drawer-menu-list"));
+                    $(".user-menu-plane").appendTo($(".drawer-menu-list"));
+                    $(".menu-item-has-children").append('<div class="m-dropdown" onclick="mobile_menuclick(event,this)" ><i class="fa fa-angle-down"></i></div>');
+                    $(".user-menu-main").not('.user-menu-main-notlogin').append('<div class="m-dropdown" onclick="mobile_menuclick(event,this)"><i class="fa fa-angle-down"></i></div>');
+                }
+
+                function closeMenu() {
+                    $('body').css('overflow', 'auto');
+                    $(".drawer-menu-plane").removeClass("drawer-menu-plane-show");
+                    $(".user-menu-plane").prependTo($(".header-menu"));
+                    $(".menu-plane").prependTo($(".header-menu"));
+                    $(".m-dropdown").remove();
+                }
+
+                function openSearch() {
+                    $(".dialog-search-plane").addClass("dialog-search-plane-show");
+                }
+
+                function closeSearch() {
+                    //$('body').css('overflow', 'auto');
+                    $(".dialog-search-plane").removeClass("dialog-search-plane-show");
+                }
+            </script>
+            <div class="mobile-menu-btn" onclick="openMenu()">
+                <i class="fa fa-bars" aria-hidden="true">
+                </i>
+            </div>
+            <div class="drawer-menu-plane">
+                <div class="drawer-menu-list">
+                </div>
+                <div class="drawer-menu-write" onclick="closeMenu()">
+                </div>
+            </div>
+            <div class="header-logo-plane">
+                <div class="header-logo">
+                    <a href="#(CPATH)/" title="#(WEB_TITLE)">
+                        <img src="#(CPATH)#option('japress_logo','/templates/japress/img/japress-logo.png')">
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-search-btn" onclick="openSearch()">
+                <i class="fa fa-search">
+                </i>
+            </div>
+            <div class="dialog-search-plane">
+                <div class="dialog-mask" onclick="closeSearch()">
+                </div>
+                <div class="dialog-plane">
+                    <h2>
+                        搜索内容
+                    </h2>
+                    <form class="search-form" action="#(CPATH)/article/search" method="get"
+                          role="search">
+                        <div class="search-form-input-plane">
+                            <input type="text" class="search-keyword" name="keyword" placeholder="搜索内容"
+                                   value="">
+                        </div>
+                        <div>
+                            <button type="submit" class="search-submit" value="">
+                                搜索
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="header-menu">
+                <div class="menu-plane">
+                    <nav class="menu-header-plane">
+                        <ul class="menu-header-list">
+                            #for(menu : MENUS)
+                            <li id="menu-item-#(menu.id)" class="menu-item #if(menu.hasChild())menu-item-has-children #end menu-item-#(menu.id) #(menu.isActive?'current-menu-item':'')">
+                                <a title="#(menu.text ??)" href="#(menu.url ??)" target="#(menu.target ??)">
+                                    #if(menu.icon)
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#(menu.icon)">
+                                        </use>
+                                    </svg>
+                                    #end
+                                    #(menu.text ??)
+                                </a>
+                                #if(menu.hasChild())
+                                <ul class="sub-menu">
+                                    #for(childMenu : menu.getChilds())
+                                    <li id="menu-item-#(childMenu.id)" class="menu-item menu-item-#(childMenu.id)">
+                                        <a title="#(childMenu.text ??)" href="#(childMenu.url ??)" target="#(childMenu.target ??)">
+                                            #if(childMenu.icon)
+                                            <svg class="icon" aria-hidden="true">
+                                                <use xlink:href="#(childMenu.icon)">
+                                                </use>
+                                            </svg>
+                                            #end
+                                            #(childMenu.text ??)
+                                        </a>
+                                    </li>
+                                    #end
+                                </ul>
+                                #end
+                            </li>
+                            #end
+                        </ul>
+                    </nav>
+                </div>
+                &nbsp;
+                <div class="user-menu-plane">
+                    <div class="user-menu-pc-search" onclick="openSearch()" title="搜索">
+                        <i class="fal fa-search">
+                        </i>
+                    </div>
+
+                    #if(USER)
+                    <ul class="user-menu">
+                        <li>
+                            <a class="user-menu-main">
+                                <img class="user-avatar" width="30" height="30" src="#(USER.avatar ?? (TPATH + '/img/avatar.png'))" alt="">
+                                <span class="user-menu-name">#(USER.nickname)</span></a>
+                            <ul class="user-sub-menu">
+
+                                <li><a href="#(CPATH)/ucenter"><i class="fas fa-tachometer-alt"></i> 用户中心</a></li>
+                                <li><a href="#(CPATH)/ucenter/article/write"><i class="far fa-edit"></i>
+                                    我要投稿</a></li>
+                                <li><a href="#(CPATH)/ucenter/logout"><i class="fas fa-sign-out-alt"></i> 退出登录</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    #else
+                    <span class="user-menu-main user-menu-main-notlogin">
+                                    <a href="#(CPATH)/user/login">
+                                        <button class="login-btn-header">
+                                            登录
+                                        </button>
+                                    </a>
+                     </span>
+                    #end
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="top-divider">
+</div>
+<!--   内容区域     -->
+<main class="container">
+    <div class="html-main">
+        <!--主内容区-->
+        #@content()
+        <!--/主内容区-->
+        <!--sidebar-->
+        #include("./_sidebar.html")
+        <!--/sidebar-->
+    </div>
+
+    #if(show_flinks != false)
+    <div class="frinds-links">
+        <div class="list-plane-title">
+            <div>
+                友情链接
+            </div>
+        </div>
+        <div class="frinds-links-list">
+            #japressFriendsLinks()
+            #for(f : japressFriendsLinks)
+            <li>
+                <a href="#(f.url)" target="#(f.target)">
+                    <img class="frinds-links-icon" src="#(f.icon ?? '/templates/japress/img/chrome.png')">
+                    #(f.title)
+                </a>
+            </li>
+            #end
+            #end
+        </div>
+    </div>
+    #end
+
+</main>
+<!--        /内容区域-->
+<footer>
+    <!-- 导航的图标 -->
+    #if(option('japress_aliicon'))
+    <script src="#option('japress_aliicon')"></script>
+    #end
+
+    <div class="go-top-plane" onclick="topScroll()" title="返回顶部">
+        <i class="fa fa-arrow-up" aria-hidden="true">
+        </i>
+    </div>
+    <div class="footer-plane">
+        <div class="footer-container">
+            <div class="footer-left">
+                <div>
+                    <div class="footer-aside-box">
+                        <div class="textwidget">
+                            #(WEB_COPYRIGHT ?? 'JaPress主题，一款基于JPress的主题，适合个人博客，极客等！')
+                        </div>
+                    </div>
+
+                    <div class="footer-info">
+                        #if(WEB_IPC_NO)
+                        <span class="footer-icp">
+                                        <img class="ipc-icon" src="img/icp.svg" alt="">
+                                        <a href="https://beian.miit.gov.cn/" target="_blank">
+                                            #(WEB_IPC_NO)
+                                        </a>
+                                    </span>
+                        #end
+                    </div>
+                </div>
+            </div>
+            <div class="footer-details footer-right"></div>
+
+        </div>
+    </div>
+</footer>
+#option('japress_foot_code')
+<script type="text/javascript">
+    $("img").lazyload({effect: "fadeIn"});
+</script>
+<script>
+    #if(option('japress_cursor_default'))
+    $("body").css("cursor", "url('#option('japress_cursor_default')'), default");
+    #end
+    #if(option('japress_cursor_pointer'))
+    $("a").css("cursor", "url('#option('japress_cursor_pointer')'), pointer");
+    #end
+</script>
+</body>
+
+</html>
+#end

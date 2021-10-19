@@ -1,0 +1,99 @@
+#set(show_side_search = false)
+#set(show_side_words = false)
+#set(show_side_tagcloud = false)
+#set(show_flinks = false)
+
+#include("./layout.html")
+#@layout()
+
+
+#define content()
+<div class="post-main">
+    <div class="post-list-page-plane">
+        <div class="list-plane-title">
+            <div>搜索内容：#(keyword ??)</div>
+        </div>
+
+        #articleSearchPage()
+        #if(articlePage && articlePage.list.size() > 0)
+        <ul class="post-list">
+            #for(article : articlePage.list)
+            <li class="post-item">
+                <div class="post-item-container">
+                    <div class="post-item-thumbnail">
+                        <a href="#(article.url)">
+                            <img src="img/loading.gif" data-original="#(article.showImage ?? option('japress_thumb','/templates/japress/img/thumbnail.png'))"
+                                 alt="#(article.title)">
+                        </a>
+                    </div>
+                    #articleCategories(article.id,"category")
+                    <div class="post-item-tags">
+                        #for(category : categories)
+                        <span class="cat-item">
+                                     <a href="#(category.url ??)">
+                                         #(category.title ??)
+                                     </a>
+                             </span>
+                        #end
+                    </div>
+                    #end
+                    <div class="post-item-main">
+                        <h2>
+                            <a href="#(article.url)">
+                                #(article.highlightTitle ??)
+                            </a>
+                        </h2>
+                        <div class="post-item-content">
+                            #(article.highlightContent ??)
+                        </div>
+                        <div class="post-item-info">
+                            <div class="post-item-meta">
+                                <div class="post-item-meta-item">
+                                         <span class="post-item-meta-author">
+                                             <img alt="" src="#(article.user.avatar ??)" class="post-item-avatar">
+                                             #(article.user.nickname ??)
+                                         </span>
+                                    <span class="post-item-time">
+                                             #date(article.created)
+                                         </span>
+                                </div>
+                                <div class="item-post-meta-other">
+                                         <span>
+                                             <i class="fas fa-eye" aria-hidden="true">
+                                             </i>
+                                             #(article.view_count ?? 0)
+                                         </span>
+                                    <span>
+                                             <i class="fas fa-comment-alt-lines">
+                                             </i>
+                                             #(article.comment_count ?? 0)
+                                         </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            #end
+        </ul>
+        #else
+        没有找到关于 <span style="color: red">#(keyword ??)</span> 的内容
+        #end
+        #end
+
+        #articleSearchPaginate(activeClass='current')
+        <div class="pages">
+
+            <div class="fenye">
+                #for(page : pages)
+                <a href="#(page.url ??)" class="#(page.style)">#(page.text)</a>
+                #end
+                <span class="page-count pagedbox">#(articlePage.pageNumber)/#(articlePage.totalPage)</span>
+            </div>
+
+        </div>
+        #end
+
+    </div>
+</div>
+#end

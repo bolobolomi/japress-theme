@@ -1,0 +1,146 @@
+#include("./layout.html")
+#@layout()
+
+
+#define content()
+     <div class="post-main">
+         #if(option('japress_index_hdp'))
+         <div>
+             <div class="swiper-container carousel swiper-container-initialized swiper-container-horizontal">
+                 <div class="swiper-wrapper">
+                     #for(slide : linesOption('japress_index_hdp','\|'))
+                     <div class="swiper-slide">
+                         <a href="#(slide[1] ??)" target="#(slide[2] ??)">
+                             <img src="#(slide[0] ??)" alt="#(slide[3] ??)">
+                         </a>
+                     </div>
+                     #end
+                 </div>
+                 <div class="swiper-pagination swiper-pagination-bullets">
+
+                 </div>
+                 <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide">
+                 </div>
+                 <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide">
+                 </div>
+                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true">
+                 </span>
+             </div>
+         </div>
+         <script>
+             window.onload = function() {
+                 var mySwiper = new Swiper('.swiper-container', {
+                     loop: true,
+                     autoplay: true,
+                     delay: 3000,
+                     pagination: {
+                         el: '.swiper-pagination',
+                     },
+                     // 如果需要前进后退按钮
+                     navigation: {
+                         nextEl: '.swiper-button-next',
+                         prevEl: '.swiper-button-prev',
+                     },
+                 })
+             }
+         </script>
+         #end
+
+         #if(option('japress_index_tuijian'))
+         <style>
+             .index-top-postcard-item { flex-basis: 24%; }
+         </style>
+         <div class="index-top-postcard-plane">
+             <div class="index-top-postcard-body">
+                 #for(t : linesOption('japress_index_tuijian','\|'))
+                 <div class="index-top-postcard-item">
+                     <div class="index-top-postcard-main">
+                         <div class="post-item-thumbnail">
+                             <a href="#(t[1] ??)" target="#(t[2] ??)">
+                                 <img src="#(t[0] ??)" alt="#(t[3] ??)">
+                             </a>
+                         </div>
+                         <div class="index-top-postcard-title">
+                             <a href="#(t[1] ??)" target="#(t[2] ??)">
+                                 #(t[3] ??)
+                             </a>
+                         </div>
+                     </div>
+                 </div>
+                 #end
+             </div>
+         </div>
+         #end
+         <div class="post-list-page-plane">
+             <div class="list-plane-title">
+                 <div>最新文章</div>
+             </div>
+             #articles(orderBy='created desc',count=15)
+             <ul class="post-list">
+                 #for(article : articles)
+                 <li class="post-item">
+                     <div class="post-item-container">
+                         <div class="post-item-thumbnail">
+                             <a href="#(article.url)" target="_blank">
+                                 <img src="img/loading.gif" data-original="#(article.showImage ?? option('japress_thumb','/templates/japress/img/thumbnail.png'))"
+                                 alt="#(article.title)">
+                             </a>
+                         </div>
+                         #articleCategories(article.id,"category")
+                         <div class="post-item-tags">
+                             #for(category : categories)
+                             <span class="cat-item">
+                                     <a target="_blank" href="#(category.url ??)">
+                                         #(category.title ??)
+                                     </a>
+                             </span>
+                             #end
+                         </div>
+                         #end
+                         <div class="post-item-main">
+                             <h2>
+                                 <a href="#(article.url)" target="_blank">
+                                     #(article.title)
+                                 </a>
+                             </h2>
+                             <div class="post-item-content">
+                                 #maxLength(article.text,130)……
+                             </div>
+                             <div class="post-item-info">
+                                 <div class="post-item-meta">
+                                     <div class="post-item-meta-item">
+                                         <span class="post-item-meta-author">
+                                             <img alt="" src="#(article.user.avatar ??)" class="post-item-avatar">
+                                             #(article.user.nickname ??)
+                                         </span>
+                                         <span class="post-item-time">
+                                             #date(article.created)
+                                         </span>
+                                     </div>
+                                     <div class="item-post-meta-other">
+                                         <span>
+                                             <i class="fas fa-eye" aria-hidden="true">
+                                             </i>
+                                             #(article.view_count ?? 0)
+                                         </span>
+                                         <span>
+                                             <i class="fas fa-comment-alt-lines">
+                                             </i>
+                                             #(article.comment_count ?? 0)
+                                         </span>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </li>
+                 #end
+             </ul>
+             #end
+             <div class="pages">
+
+
+             </div>
+         </div>
+     </div>
+#end
