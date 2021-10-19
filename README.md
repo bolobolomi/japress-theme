@@ -1,5 +1,7 @@
 ### JaPress 介绍
 
+详细介绍[点此处](https://www.miigua.com/a/256.html)
+
 JaPress 是一款高颜值、自适应而且 SEO 友好的免费主题模板，她的前端风格来自[CorePressWPTheme](https://github.com/ghboke/CorePressWPTheme)。
 
 她具有如下特色：
