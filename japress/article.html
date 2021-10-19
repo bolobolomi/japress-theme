@@ -96,8 +96,16 @@
                     <div class="post-end-dividing">
                         THE END
                     </div>
+
+                    #articleCategories(article.id,"tag")
                     <div class="post-tags">
+                        <span class="post-tags-icon"><i class="fas fa-tags"></i></span>
+                        #for(category : categories)
+                        <a href="#(category.url ??)" rel="tag">#(category.title ??)</a>
+                        #end
                     </div>
+                    #end
+
 
                     <div class="post-end-tool-btns">
 
@@ -225,7 +233,7 @@
         <h3 class="comments-title">全部评论</h3>
 
         <ol class="commentlist">
-            #commentPage(count=1)
+            #commentPage()
             #for(comment : commentPage.list ??)
             <li class="comment">
                 <div class="comment-item">
