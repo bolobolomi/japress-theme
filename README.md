@@ -17,15 +17,15 @@ JaPress 是一款高颜值、自适应而且 SEO 友好的免费主题(theme)模
 
 主页面：
 
-![](https://www.miigua.com/wp-content/uploads/2021/10/localhost_8080_-2.png)
+![](https://www.miigua.com/attachment/20211026/0fb25fd610b245dd800a929fc226606b.png)
 
 分类页：
 
-![](https://www.miigua.com/wp-content/uploads/2021/10/localhost_8080_article_category_jpress2.png)
+![](https://www.miigua.com/attachment/20211026/7f655cf5d88a4667a252d2194cbebdec.png)
 
 详情页：
 
-![](https://www.miigua.com/wp-content/uploads/2021/10/localhost_8080_article_3.png)
+![](https://www.miigua.com/attachment/20211026/714309ebde2040f09e887836adec5b9a.png)
 
 ### 安装指南
 
