@@ -49,6 +49,21 @@
                             建议高度为50px
                         </div>
                     </div>
+
+                    <div class="set-plane">
+                        <div class="set-title">
+                            logo处展示
+                        </div>
+                        <div class="set-object">
+                            <label for="japress_show_logo1">
+                                <input #if(option('japress_show_logo') == null) checked #end type="radio" name="japress_show_logo" value="" id="japress_show_logo1"> logo图片
+                            </label>
+                            <label for="japress_show_logo2">
+                                <input #if(option('japress_show_logo') == 'webname') checked #end type="radio" name="japress_show_logo" value="webname" id="japress_show_logo2"> 网站名称（“系统-常规-网站名称”处设置）
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="set-plane">
                         <div class="set-title">
                             favicon图标
@@ -172,8 +187,8 @@
                         </div>
                         <div class="set-object">
                             <label for="font_default"><input type="radio" id="font_default" name="japress_font" value="" #if(option('japress_font') == null) checked #end> 默认</label>
-                            <label for="font_zkklt"><input type="radio" id="font_zkklt" name="japress_font" value="zkklt" #if(option('japress_font') == "zkklt") checked #end> 仓耳与墨</label>
-                            <label for="font_ceym"><input type="radio" id="font_ceym" name="japress_font" value="ceym" #if(option('japress_font') == "ceym") checked #end> 站酷快乐体</label>
+                            <label for="font_zkklt"><input type="radio" id="font_zkklt" name="japress_font" value="zkklt" #if(option('japress_font') == "zkklt") checked #end> 站酷快乐体</label>
+                            <label for="font_ceym"><input type="radio" id="font_ceym" name="japress_font" value="ceym" #if(option('japress_font') == "ceym") checked #end> 仓耳与墨</label>
                         </div>
                     </div>
 
@@ -280,6 +295,34 @@
                         <div class="set-object">请使用.cur文件</div>
                     </div>
 
+
+                    <div class="set-plane">
+                        <div class="set-title">
+                            背景图片
+                        </div>
+                        <div class="set-object">
+                            <div class="el-input el-input--small el-input-group el-input-group--append"><input
+                                    type="text" name="japress_bgimage" value="#(CPATH)#option('japress_bgimage')" id="japress_bgimage" autocomplete="off" placeholder="" class="el-input__inner">
+                                <div class="el-input-group__append">
+                                    <button type="button" for-input="japress_bgimage" class="btn-image-browser el-button el-button--default el-button--mini"><span>选择文件
+            </span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="set-plane">
+                        <div class="set-title">
+                        </div>
+                        <div class="set-object">
+                            <label for="japress_bgimage_mode1">
+                                <input #if(option('japress_bgimage_mode') == null) checked #end type="radio" name="japress_bgimage_mode" value="" id="japress_bgimage_mode1"> 平铺
+                            </label>
+                            <label for="japress_bgimage_mode2">
+                                <input #if(option('japress_bgimage_mode') == 'full') checked #end type="radio" name="japress_bgimage_mode" value="full" id="japress_bgimage_mode2"> 全屏
+                            </label>
+                        </div>
+                    </div>
+
                     <hr>
 
                     <h2 id="插入代码">插入代码</h2>
@@ -360,7 +403,7 @@
         </div>
     </div>
     <div class="control-plane">
-        <button type="submit" class="el-button el-button--default el-button--mini"><span>保存</span>
+        <button type="submit"  class="el-button el-button--primary"><span>保存更改</span>
         </button>
     </div>
     </form>

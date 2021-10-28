@@ -105,6 +105,32 @@ header {
     position: fixed;
     z-index: 99
 }
+.charts-icon{
+}
+.charts-content{
+    position: absolute;
+    visibility: hidden;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
+    top: 40px;
+    right: -20px;
+    padding: 15px;
+    white-space: nowrap;
+    border-radius: var(--border-hd);
+    transition-duration: .3s;
+    opacity: 0;
+    font-size: 14px;
+    color: #464D54;
+    font-weight: bold;
+}
+
+.charts-icon:hover > .charts-content {
+    visibility: visible;
+    display: block;
+    z-index: 1;
+    opacity: 1;
+    top: 50px;
+}
 
 .top-divider {
     min-height: 80px;
@@ -123,7 +149,8 @@ header {
 }
 
 .header-logo a {
-    color: var(--Maincolor)
+    color: var(--Maincolor);
+    font-size: 22px;
 }
 
 .header-main-plane {
@@ -211,7 +238,7 @@ header .current-menu-item > a {
     padding-right: 20px
 }
 
-.menu-header-list > .menu-item-has-children:after, .user-menu:after {
+.menu-header-list > .menu-item-has-children:after, .user-menu:after  {
     position: absolute;
     right: 0;
     top: 0;
@@ -226,7 +253,10 @@ header .current-menu-item > a {
 .menu-header-list > .menu-item-has-children:hover:after {
     transform: rotate(-90deg)
 }
-
+.charts-icon:hover i{
+    transition: transform .3s;
+    transform: rotate(360deg)
+}
 .user-menu-main {
     font-size: 14px
 }

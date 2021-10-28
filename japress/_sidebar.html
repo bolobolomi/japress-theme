@@ -103,7 +103,7 @@
                     <div class="widger-comment-info">
                         <div class="widger-comment-user">
                             <div class="widger-avatar">
-                                <img class="user-avatar" width="30" height="30" src="#(c.user.avatar ??)">
+                                <img class="user-avatar" width="30" height="30" src="#(c.user.avatar ?? (TPATH + '/img/avatar.png'))">
                             </div>
                             <div class="widger-comment-name">
                                 #(c.user.nickname ??)

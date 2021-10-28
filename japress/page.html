@@ -128,6 +128,14 @@
                                                                      rows="5"></textarea>
                     </div>
                 </div>
+                #if(!USER)
+                <div class="comment_userinput">
+                    <div class="comment-form-author"><input id="nickname" name="nickname" placeholder="昵称(*)" type="text"
+                                                            value="" size="30" required></div>
+                    <div class="comment-form-email"><input id="email" name="email" type="text" placeholder="邮箱(*)"
+                                                           value="" required></div>
+                </div>
+                #end
                 #if(option("page_comment_vcode_enable","true"))
                 <div class="comment-user-plane">
                     <div class="comment_form_textarea_box comment_userinput input" style="padding-left: 0; justify-content: left;">

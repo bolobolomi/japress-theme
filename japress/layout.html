@@ -18,6 +18,17 @@
         #nprogress .bar {
             background: var(--Maincolor) !important;
         }
+        #if(option('japress_bgimage'))
+        html, body, #app {
+            background-image: url('#(option('japress_bgimage'))')!important;
+            background-position: center center;
+            #if(option('japress_bgimage_mode') == 'full')
+            background-size: cover;
+            #else
+            background-attachment: fixed;
+            #end
+        }
+        #end
     </style>
 
     #if(option('japress_font') == "zkklt")
@@ -106,7 +117,11 @@
             <div class="header-logo-plane">
                 <div class="header-logo">
                     <a href="#(CPATH)/" title="#(WEB_TITLE)">
+                        #if(option('japress_show_logo') == 'webname')
+                        #(WEB_NAME ??)
+                        #else
                         <img src="#(CPATH)#option('japress_logo','/templates/japress/img/japress-logo.png')">
+                        #end
                     </a>
                 </div>
             </div>
@@ -174,10 +189,16 @@
                 </div>
                 &nbsp;
                 <div class="user-menu-plane">
+
+
+
                     <div class="user-menu-pc-search" onclick="openSearch()" title="搜索">
                         <i class="fal fa-search">
                         </i>
                     </div>
+
+
+
 
                     #if(USER)
                     <ul class="user-menu">
@@ -289,7 +310,7 @@
         $("img").lazyload({effect: "fadeIn"});
 
     #if(option('japress_cursor_default'))
-            $("body").css("cursor", "url('#option('japress_cursor_default')'), default");
+            $("html,body").css("cursor", "url('#option('japress_cursor_default')'), default");
     #end
     #if(option('japress_cursor_pointer'))
             $("a").css("cursor", "url('#option('japress_cursor_pointer')'), pointer");

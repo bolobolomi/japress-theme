@@ -13,6 +13,7 @@
                          <a href="#(slide[1] ??)" target="#(slide[2] ??)">
                              <img src="#(slide[0] ??)" alt="#(slide[3] ??)">
                          </a>
+                         <h3 class="slide-title">#(slide[3] ??)</h3>
                      </div>
                      #end
                  </div>
@@ -104,7 +105,11 @@
                                  </a>
                              </h2>
                              <div class="post-item-content">
-                                 #maxLength(article.text,130)……
+                                 #if(article.summary)
+                                 #(article.summary)
+                                 #else
+                                 #maxLength(article.text,130)……)
+                                 #end
                              </div>
                              <div class="post-item-info">
                                  <div class="post-item-meta">

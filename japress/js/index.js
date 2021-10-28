@@ -13,6 +13,9 @@ function topScroll() {
 	return false;
 }
 
+function showCharts(){
+	$(".charts-content").fadeToggle();
+}
 
 $(document).scroll(function () {
             var scrollTop = $(document).scrollTop();
